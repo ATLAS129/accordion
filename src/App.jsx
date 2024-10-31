@@ -13,11 +13,9 @@ export default function App() {
 
   function handleMultiClick(id) {
     setIsClickedSingleAccordionsId(null);
-    setIsClickedMultiAccordionsId([...isClickedMultiAccordionsId, id]);
+    setIsClickedMultiAccordionsId((list) => [...list, id]);
     if (isClickedMultiAccordionsId.includes(id)) {
-      setIsClickedMultiAccordionsId(
-        isClickedMultiAccordionsId.filter((el) => el !== id)
-      );
+      setIsClickedMultiAccordionsId((list) => list.filter((el) => el !== id));
     }
   }
 
@@ -69,7 +67,7 @@ export default function App() {
         <h1>Current: {isSingleAccordion ? "Single" : "Multi"}</h1>
         <button
           className="switch"
-          onClick={() => setIsSingleAccordion(!isSingleAccordion)}
+          onClick={() => setIsSingleAccordion((last) => !last)}
         >
           Switch to {isSingleAccordion ? "Multi" : "Single"}
         </button>
